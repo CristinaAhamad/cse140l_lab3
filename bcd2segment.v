@@ -46,6 +46,7 @@
 // segment[1] - b     segment[4] - e
 // segment[2] - c     segment[5] - f
 //
+// Author:  Cristina Ahamad
 module bcd2segment (
 		  output wire [6:0] segment,  // 7 drivers for segment
 		  input  wire [3:0] num,       // number to convert
@@ -88,17 +89,24 @@ module bcd2segment (
 		      eight | nine | ten | eleven | thirteen) ;
    
    // d
-   // assign segmentUQ[3] = ( ... );
+   assign segmentUQ[3] = ( 
+				zero | two | three | five | six | eight | ten | eleven | twelve 
+				| thirteen | fourteen);
    
    // e
-   // assign segmentUQ[4] = ( ... );
-
+   assign segmentUQ[4] = (
+				zero | two | six | eight | ten | eleven | twelve | thirteen 
+				| fourteen | fifteen);
    
    // f
-   // assign segmentUQ[5] = ( ... );
+   assign segmentUQ[5] = ( 
+				zero | four | five | six | eight | nine | ten | eleven |
+				twelve | fourteen | fifteen);
 
    // g
-   // assign segmentUQ[6] = ( ... );
+   assign segmentUQ[6] = (
+				two | three | four | five | six | eight | nine | eleven | thirteen 
+				| fourteen | fifteen);
 
    assign segment = {7{enable}} & segmentUQ;
    
