@@ -71,7 +71,7 @@ module Lab3_140L (
 					.di_Stens(di_Stens[3:0]), .di_Sones(di_Sones[3:0]), 
 					.di_AMtens(di_AMtens[3:0]), .di_AMones(di_AMones[3:0]), 
 					.di_AStens(di_AStens[3:0]), .di_ASones(di_ASones[3:0]),
-					.did_alarmMatch(L3_tx_data_rdy), .L3_led(L3_led), 
+					.did_alarmMatch(did_alarmMatch), .L3_led(L3_led), 
 					.bu_rx_data(bu_rx_data), 
 					.dicLdMtens(dicLdMtens), .dicLdMones(dicLdMones), 
 					.dicLdStens(dicLdStens), .dicLdSones(dicLdSones),
@@ -147,7 +147,7 @@ module didp (
 	
 	//counter 
 	countrce countSO(.q(di_Sones), .d(bu_rx_data[3:0]), .ld(dicLdSones), 
-							.ce(dicRun && oneSecStrb), 
+							.ce(dicRun & oneSecStrb), 
 							.rst(rst | rstSO), .clk(clk));
 	countrce countST(.q(di_Stens), .d(bu_rx_data[3:0]), .ld(dicLdStens), 
 							.ce(dicLdStens | rstSO), 
